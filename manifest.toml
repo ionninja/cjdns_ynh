@@ -41,5 +41,7 @@ ram.runtime = "50M"
 
     [resources.ports]
 
+    [resources.permissions]
+
     [resources.apt]
     packages = "curl, nodejs, jq"
