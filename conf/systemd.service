@@ -1,12 +1,12 @@
 [Unit]
 Description=Cjdns network
-After=network.target
+After=network.target cjdns.service
 
 [Service]
 User=root
 Group=root
-WorkingDirectory=__DATA_DIR__/
-ExecStart=/bin/bash -c '__DATA_DIR__/cjdroute < __DATA_DIR__/cjdroute.conf'
+WorkingDirectory=__INSTALL_DIR__/
+ExecStart=/bin/bash -c '__INSTALL_DIR__/cjdroute < __INSTALL_DIR__/cjdroute.conf'
 KillMode=process
 Restart=no
 

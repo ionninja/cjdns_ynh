@@ -1,34 +1,24 @@
-#:schema https://raw.githubusercontent.com/YunoHost/apps/master/schemas/manifest.v2.schema.json
-
 packaging_format = 2
 
 id = "cjdns"
-name = "Cjdns network"
-description.en = "Cjdns implements an encrypted IPv6 network using public-key cryptography for address allocation and a distributed hash table for routing. This provides near-zero-configuration networking, and prevents many of the security and scalability issues that plague existing networks."
-description.fr = "Cjdns est un réseau IPv6 chiffré utilisant des clefs publiques de cryptographie pour l'allocation d'adresses et une table de hashage distribuée pour le routage. Il fournit un réseau quasiment sans configuration et évite la majorité des problèmes de sécurité et de passage à l'échelle (scalability) des réseaux actuels."
+name = "Cjdns"
+description = "Cjdns encrypted IPv6 network"
 
 version = "1.0~ynh1"
 
 maintainers = ["dkoukoul"]
 
 [upstream]
-license = "GPL v3"
-website = "https://example.com"
-demo = "https://demo.example.com"
-admindoc = "https://yunohost.org/packaging_apps"
-userdoc = "https://yunohost.org/apps"
-code = "https://some.forge.com/example/example"
+license = "GPL-3.0"
+website = "https://github.com/cjdelisle/cjdns/"
+code = "https://github.com/cjdelisle/cjdns/"
 
 [integration]
 yunohost = ">= 11.1.21"
-# FIXME: can be replaced by a list of supported archs using the dpkg --print-architecture nomenclature (amd64/i386/armhf/arm64), for example: ["amd64", "i386"]
-architectures = "amd64"
+architectures = ["amd64","arm64"]
 multi_instance = false
-
-ldap = "not_relevant"
-sso = "not_relevant"
-
-# FIXME: replace with an **estimate** minimum disk and RAM requirements. e.g. 20M, 400M, 1G...
+ldap = false
+sso = false
 disk = "50M"
 ram.build = "50M"
 ram.runtime = "50M"
@@ -36,19 +26,20 @@ ram.runtime = "50M"
 [install]
 
 [resources]
-    # [resources.sources]
-    #     [resources.sources.main]
-    #     url = "https://github.com/dkoukoul/cjdns/releases/download/debian/cjdroute"
-    #     sha256 = "9510c5d8487101b7ec115b09a0770c88643b91b2cd4d1f18c794962ec14463c2"
+    [resources.sources]
+        [resources.sources.main]
+        amd64.url = "https://github.com/dkoukoul/cjdns/releases/download/v22-7/cjdroute_linux_x86_64.tar.gz"
+        amd64.sha256 = "7385b98a3f7874a1fea14a6afeb9019d3595269b5c3282cb4dea35fc3b4a47ac"
+        arm64.url = "https://github.com/dkoukoul/cjdns/releases/download/v22-7/cjdroute_linux_arm64.tar.gz"
+        arm64.sha256 = "8c391e024cc9094f0ec23ac325c2115013757da34fe730d46fc17436cf4773da"
     
     [resources.system_user]
-    home="/var/www/cjdns"
-
+    
+    [resources.install_dir]
+    
     [resources.data_dir]
-    dir="/home/cjdns"
 
     [resources.ports]
-    # This will pick a random port for reverse-proxying and store it as the $port setting
 
     [resources.apt]
     packages = "curl, nodejs, jq"

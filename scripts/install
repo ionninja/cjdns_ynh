@@ -14,26 +14,25 @@ source /usr/share/yunohost/helpers
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_script_progression --message="Downloading cjdns binary..." --weight=1
-cd $data_dir
-wget https://github.com/dkoukoul/cjdns/releases/download/debian/cjdroute
+ynh_script_progression --message="Setting up source files..." --weight=1
 
+# Download, check integrity, uncompress and patch the source from app.src
+ynh_setup_source --dest_dir="$install_dir"
+
+chmod -R o-rwx "$install_dir"
+chown -R $app:www-data "$install_dir"
+chmod +x "$install_dir/cjdroute"
+
+# mv $install_dir/cjdroute $data_dir/cjdroute
 #=================================================
-# SYSTEM CONFIGURATION
+# CONFIGURING CJDNS
 #=================================================
-ynh_script_progression --message="Generating cjdroute configuration file..." --weight=1
+ynh_script_progression --message="Configuring cjdns..." --weight=1
 
-chmod +x cjdroute
-./cjdroute --genconf | ./cjdroute --cleanconf > cjdroute.conf 
-echo "Cjdroute configuration file generated"
-### echo "Generating seed..."
-### echo "/data/cjdroute.conf|$PKTEER_SECRET" | sha256sum | /server/cjdns/cjdroute --genconf-seed
-echo "Editing cjdroute configuration file..."
-jq '.security[0].setuser = 0' $data_dir/cjdroute.conf > $data_dir/cjdroute.conf.tmp && mv $data_dir/cjdroute.conf.tmp $data_dir/cjdroute.conf
-jq '.noBackground = 1' $data_dir/cjdroute.conf > $data_dir/cjdroute.conf.tmp && mv $data_dir/cjdroute.conf.tmp $data_dir/cjdroute.conf
+$install_dir/cjdroute --genconf | $install_dir/cjdroute --cleanconf > $install_dir/cjdroute.conf 
 
-# Use logrotate to manage application logfile(s)
-# ynh_use_logrotate
+jq '.security[0].setuser = 0' $install_dir/cjdroute.conf > $install_dir/cjdroute.conf.tmp && mv $install_dir/cjdroute.conf.tmp $install_dir/cjdroute.conf
+jq '.noBackground = 1' $install_dir/cjdroute.conf > $install_dir/cjdroute.conf.tmp && mv $install_dir/cjdroute.conf.tmp $install_dir/cjdroute.conf
 
 #=================================================
 # SETUP SYSTEMD
@@ -43,12 +42,14 @@ ynh_script_progression --message="Configuring cjdns systemd service..."
 # Create a dedicated systemd config
 ynh_add_systemd_config
 
+# Use logrotate to manage application logfile(s)
+ynh_use_logrotate
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST
 #=================================================
 ynh_script_progression --message="Integrating cjdns service in YunoHost..."
 
-yunohost service add $app --description="$app service"
+yunohost service add $app --description="$app service" --log="/var/log/$app/$app.log"
 
 #=================================================
 # GENERIC FINALIZATION
@@ -58,7 +59,7 @@ yunohost service add $app --description="$app service"
 ynh_script_progression --message="Launching cjdns service..." --weight=1
 
 # Start a systemd service
-ynh_systemd_action --service_name=$app --action="start" 
+ynh_systemd_action --service_name=$app --action="start" --log_path="systemd"
 
 #=================================================
 # END OF SCRIPT
