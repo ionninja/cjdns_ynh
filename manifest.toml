@@ -4,7 +4,7 @@ id = "cjdns"
 name = "Cjdns"
 description = "Cjdns encrypted IPv6 network"
 
-version = "1.0~ynh1"
+version = "22.7"
 
 maintainers = ["dkoukoul"]
 
