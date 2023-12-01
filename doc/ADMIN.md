@@ -1,6 +1,0 @@
-Security
-
-Upgrading
-
-Other
-...

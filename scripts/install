@@ -35,6 +35,43 @@ jq '.security[0].setuser = 0' $install_dir/cjdroute.conf > $install_dir/cjdroute
 jq '.noBackground = 1' $install_dir/cjdroute.conf > $install_dir/cjdroute.conf.tmp && mv $install_dir/cjdroute.conf.tmp $install_dir/cjdroute.conf
 
 #=================================================
+# UPGRADE PEERS
+#=================================================
+ynh_script_progression --message="Getting cjdns peers..." --weight=1
+# Fetch the JSON data
+json=$(curl -s https://vpn.anode.co/api/0.3/vpn/cjdns/peeringlines/)
+echo "Got peering lines"
+
+config=$(cat $install_dir/cjdroute.conf | jq .)
+
+length=$(echo $json | jq '. | length')
+ynh_script_progression --message="Adding $length cjdns peers..." --weight=1
+for (( i=0; i<$length; i++ ))
+do
+    # Parse the JSON data
+    ip=$(echo $json | jq -r --argjson i $i '.[$i].ip')
+    port=$(echo $json | jq -r --argjson i $i '.[$i].port')
+    login=$(echo $json | jq -r --argjson i $i '.[$i].login')
+    password=$(echo $json | jq -r --argjson i $i '.[$i].password')
+    publicKey=$(echo $json | jq -r --argjson i $i '.[$i].publicKey')
+    #echo "Read peer $ip:$port $login $password $publicKey"
+    #read -p "Enter to continue"
+    # Prepare the peer to be inserted
+    peer=$(jq -n \
+    --arg ip_port "$ip:$port" \
+    --arg login "$login" \
+    --arg password "$password" \
+    --arg publicKey "$publicKey" \
+    '{($ip_port): {"login": $login, "password": $password, "publicKey": $publicKey}}')
+    #echo "Prepared peer $peer"
+    # Insert the peer into the cjdroute.conf file
+
+    config=$(echo $config | jq --argjson peer "$peer" '(.interfaces.UDPInterface[] | select(.beaconPort == 64512) .connectTo) |= . + $peer')
+done
+
+echo $config > $install_dir/cjdroute.conf
+
+#=================================================
 # SETUP SYSTEMD
 #=================================================
 ynh_script_progression --message="Configuring cjdns systemd service..."
