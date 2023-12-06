@@ -33,7 +33,6 @@ ynh_remove_systemd_config
 #=================================================
 ynh_script_progression --message="Stopping and removing the systemd service..." --weight=1
 
-systemctl stop cjdns
 killall cjdroute
 
 # Remove other various files specific to the app... such as :
