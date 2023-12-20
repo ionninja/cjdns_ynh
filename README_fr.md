@@ -26,7 +26,6 @@ Cjdns implémente un réseau IPv6 crypté utilisant une cryptographie à clé pu
 
 ## Documentations et ressources
 
-* Site officiel de l’app : <https://github.com/cjdelisle/cjdns/>
 * Dépôt de code officiel de l’app : <https://github.com/cjdelisle/cjdns/>
 * YunoHost Store: <https://apps.yunohost.org/app/cjdns>
 * Signaler un bug : <https://github.com/YunoHost-Apps/cjdns_ynh/issues>

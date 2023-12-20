@@ -27,7 +27,6 @@ Cjdns implements an encrypted IPv6 network using public-key cryptography for add
 
 ## Documentation and resources
 
-* Official app website: <https://github.com/cjdelisle/cjdns/>
 * Upstream app code repository: <https://github.com/cjdelisle/cjdns/>
 * YunoHost Store: <https://apps.yunohost.org/app/cjdns>
 * Report a bug: <https://github.com/YunoHost-Apps/cjdns_ynh/issues>
