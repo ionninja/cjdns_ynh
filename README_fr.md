@@ -16,13 +16,9 @@ Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) po
 
 ## Vue d’ensemble
 
-Networking Reinvented
+Cjdns implémente un réseau IPv6 crypté utilisant une cryptographie à clé publique pour l'attribution des adresses et une table de hachage distribuée pour le routage. Cela fournit une configuration réseau proche de zéro et évite de nombreux problèmes de sécurité et d'évolutivité qui affectent les réseaux existants.
 
-Cjdns implements an encrypted IPv6 network using public-key cryptography for address allocation and a distributed hash table for routing. This provides near-zero-configuration networking, and prevents many of the security and scalability issues that plague existing networks.
-
-https://github.com/cjdelisle/cjdns/
-
-**Version incluse :** 22.7
+**Version incluse :** 22.7~ynh1
 
 ## Captures d’écran
 
