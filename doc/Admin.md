@@ -1,14 +1,3 @@
-# Cjdns for Yunohost
-
-This is a cjdns app for yunohost.
-
-## cjdns
-Networking Reinvented
-Cjdns implements an encrypted IPv6 network using public-key cryptography for address allocation and a distributed hash table for routing. This provides near-zero-configuration networking, and prevents many of the security and scalability issues that plague existing networks.
-
-https://github.com/cjdelisle/cjdns
-
-
 # Setup your website on cjdns network
 
 1. Install Yunohost by following the detailed instructions provided [here](link-to-instructions).

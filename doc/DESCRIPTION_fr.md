@@ -1,0 +1,1 @@
+Cjdns implémente un réseau IPv6 crypté utilisant une cryptographie à clé publique pour l'attribution des adresses et une table de hachage distribuée pour le routage. Cela fournit une configuration réseau proche de zéro et évite de nombreux problèmes de sécurité et d'évolutivité qui affectent les réseaux existants.
