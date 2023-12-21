@@ -2,23 +2,26 @@ packaging_format = 2
 
 id = "cjdns"
 name = "Cjdns"
-description = "Cjdns encrypted IPv6 network"
+description.en = "Encrypted IPv6 network"
+description.fr = "Réseau IPv6 chiffré"
 
-version = "22.7"
+version = "22.7~ynh1"
 
 maintainers = ["dkoukoul"]
 
 [upstream]
 license = "GPL-3.0"
-website = "https://github.com/cjdelisle/cjdns/"
 code = "https://github.com/cjdelisle/cjdns/"
 
 [integration]
-yunohost = ">= 11.1.21"
+yunohost = ">= 11.2"
 architectures = ["amd64","arm64"]
 multi_instance = false
+
 ldap = false
+
 sso = false
+
 disk = "50M"
 ram.build = "50M"
 ram.runtime = "50M"
