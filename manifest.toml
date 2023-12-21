@@ -3,9 +3,7 @@ packaging_format = 2
 id = "cjdns"
 name = "Cjdns"
 description = "Cjdns encrypted IPv6 network"
-
 version = "22.7"
-
 maintainers = ["dkoukoul"]
 
 [upstream]
