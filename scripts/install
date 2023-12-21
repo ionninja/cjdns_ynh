@@ -79,6 +79,7 @@ ynh_add_systemd_config
 
 # Use logrotate to manage application logfile(s)
 ynh_use_logrotate
+
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST
 #=================================================
@@ -96,6 +97,7 @@ ynh_script_progression --message="Launching cjdns service..." --weight=1
 # Start a systemd service
 ynh_systemd_action --service_name=$app --action="start" --log_path="systemd"
 ynh_script_progression --message="Your cjdns IPv6: $cjdns_ipv6" --weight=1
+
 #=================================================
 # END OF SCRIPT
 #=================================================
