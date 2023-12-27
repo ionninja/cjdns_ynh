@@ -48,4 +48,4 @@ ram.runtime = "50M"
     [resources.permissions]
 
     [resources.apt]
-    packages = "curl, nodejs, jq"
+    packages = "curl, jq"
