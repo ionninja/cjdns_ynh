@@ -67,7 +67,7 @@ do
 done
 
 cjdns_ipv6=$(jq -r '.ipv6' < $install_dir/cjdroute.conf)
-
+ynh_app_setting_set --app=$app --key=cjdns_ipv6 --value=$cjdns_ipv6
 
 #=================================================
 # SETUP SYSTEMD
@@ -96,7 +96,6 @@ ynh_script_progression --message="Launching cjdns service..." --weight=1
 
 # Start a systemd service
 ynh_systemd_action --service_name=$app --action="start" --log_path="systemd"
-ynh_script_progression --message="Your cjdns IPv6: $cjdns_ipv6" --weight=1
 
 #=================================================
 # END OF SCRIPT
