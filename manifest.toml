@@ -2,6 +2,7 @@ packaging_format = 2
 
 id = "cjdns"
 name = "Cjdns"
+
 description.en = "Encrypted IPv6 network"
 description.fr = "Réseau IPv6 chiffré"
 
