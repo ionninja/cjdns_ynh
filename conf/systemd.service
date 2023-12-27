@@ -1,5 +1,5 @@
 [Unit]
-Description=Cjdns network
+Description=Cjdns: Encrypted IPv6 network
 After=network.target cjdns.service
 
 [Service]
