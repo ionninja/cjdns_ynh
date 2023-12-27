@@ -38,6 +38,12 @@ chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
 chmod +x "$install_dir/cjdroute"
 
+#=================================================
+# INTEGRATE SERVICE IN YUNOHOST
+#=================================================
+ynh_script_progression --message="Integrating cjdns service in YunoHost..."
+
+yunohost service add $app --description="$app service" --log="/var/log/$app/$app.log"
 
 #=================================================
 # START SYSTEMD SERVICE
@@ -45,6 +51,7 @@ chmod +x "$install_dir/cjdroute"
 ynh_script_progression --message="Restarting cjdns service..." --weight=1
 
 ynh_systemd_action --service_name=$app --action="restart" --log_path="systemd"
+
 #=================================================
 # END OF SCRIPT
 #=================================================
