@@ -3,8 +3,8 @@ Description=Cjdns network
 After=network.target cjdns.service
 
 [Service]
-User=root
-Group=root
+User=__APP__
+Group=__APP__
 WorkingDirectory=__INSTALL_DIR__/
 ExecStart=/bin/bash -c '__INSTALL_DIR__/cjdroute < __INSTALL_DIR__/cjdroute.conf'
 KillMode=process
