@@ -33,7 +33,7 @@ ram.runtime = "50M"
     [resources.sources]
         [resources.sources.main]
         amd64.url = "https://github.com/dkoukoul/cjdns/releases/download/v22-7/cjdroute_linux_x86_64.tar.gz"
-        amd64.sha256 = "7385b98a3f7874a1fea14a6afeb9019d3595269b5c3282cb4dea35fc3b4a47ac"
+        amd64.sha256 = "68c4d536d907e33532f13277915f5312a19105056d407f5c04f1360d01559323"
         arm64.url = "https://github.com/dkoukoul/cjdns/releases/download/v22-7/cjdroute_linux_arm64.tar.gz"
         arm64.sha256 = "8c391e024cc9094f0ec23ac325c2115013757da34fe730d46fc17436cf4773da"
     

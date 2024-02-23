@@ -39,7 +39,7 @@ jq '.noBackground = 1' $install_dir/cjdroute.conf > $install_dir/cjdroute.conf.t
 #=================================================
 ynh_script_progression --message="Getting cjdns peers..." --weight=1
 # Fetch the JSON data
-json=$(curl -s https://vpn.anode.co/api/0.3/vpn/cjdns/peeringlines/)
+json=$(curl -s -A "ynh" https://vpn.anode.co/api/0.4/vpn/cjdns/peeringlines/)
 echo "Got peering lines"
 
 length=$(echo $json | jq '. | length')
@@ -96,6 +96,7 @@ ynh_script_progression --message="Launching cjdns service..." --weight=1
 
 # Start a systemd service
 ynh_systemd_action --service_name=$app --action="start" --log_path="systemd"
+
 #=================================================
 # MAKE WORDPRESS AVAILABLE ON CJDNS
 #=================================================
